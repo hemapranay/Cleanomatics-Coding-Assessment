@@ -36,13 +36,13 @@
   </header>
 
   <div class="container">
-    <!-- Sidebar -->
+    
     <nav class="sidebar">
       <button onclick="window.location.href='index.html'">Home</button>
       <button onclick="window.location.href='a.html'">Distance Based</button>
     </nav>
 
-    <!-- Main Section -->
+    
     <main class="content">
       <form id="timeForm">
         <label for="hours">Enter hours and mins:</label>
@@ -72,7 +72,6 @@
       <div id="comparison"></div>
     </main>
 
-    <!-- About Section -->
     <aside class="about">
       <h2>About</h2>
       <p>
@@ -100,7 +99,7 @@
       const response = await fetch("http://localhost:8000/calculate-distance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hours, minutes, vehicle: transport }) // ✅ FIXED
+        body: JSON.stringify({ hours, minutes, vehicle: transport }) 
       });
 
       const data = await response.json();
