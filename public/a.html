@@ -1,57 +1,115 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- let's import our stylesheet (found in public/css/styles.css)-->
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enter Distance, Get Time!</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <style>
+    
+    #result {
+      margin-top: 20px;
+      background: #f0f8ff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .warning { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Enter Distance, Get Time!</h1>
+  </header>
 
-  <!-- you can also specify styles straight in HTML! these will almost override CSS stylesheets. -->
-  <!-- let's make this page use comic sans and dark blue for the body text. -->
-  <body
-    style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; color: #0000aa"
-  >
-    <header
-      style="
-        background-color: #0000aa;
-        padding: 15px;
-        text-align: center;
-        color: #ffffff;
-      "
-    >
-      <h1>Page 2, Electric Boogaloo!</h1>
-    </header>
+  <div class="container">
+    <nav class="sidebar">
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='b.html'">Time Based</button>
+    </nav>
 
-    <div class="site-view">
-      <nav>
-        <a href="/">Home</a>
-        <a href="/b">Gray Rabbit</a>
-        <a href="/c">Sepia Rabbit</a>
-      </nav>
 
-      <main>
-        <h2>Check out this cool rabbit!</h2>
-        <img
-          src="/images/bunny.jpg"
-          alt="a rabbit"
-          class="responsive centered"
-        />
-        <p>
-          Photo credits:
-          <a href="https://unsplash.com/photos/u_kMWN-BWyU">
-            Satyabratasm on Unsplash
-          </a>
-        </p>
-      </main>
+    <main class="content">
+      <form id="distanceForm">
+        <label for="distance">Enter Distance</label>
+        <input type="number" id="distance" placeholder="in kilometers" required />
 
-      <footer>
-        <h2>About</h2>
-        <p>
-          This is some example code prepared for CS160: User Interface Design
-          &amp; Development, Spring 2024. It was built by Nate Weinman, Shm
-          Almeda, and Timothy J. Aveni.
-        </p>
-      </footer>
-    </div>
-  </body>
+        <label for="transport">Transport:</label>
+        <select id="transport">
+          <option value="Maruti Suzuki Alto">Maruti Suzuki Alto</option>
+          <option value="Hyundai i20">Hyundai i20</option>
+          <option value="Tata Nexon">Tata Nexon</option>
+          <option value="Honda City">Honda City</option>
+          <option value="Mahindra Thar">Mahindra Thar</option>
+          <option value="Toyota Innova Crysta">Toyota Innova Crysta</option>
+          <option value="Kia Seltos">Kia Seltos</option>
+          <option value="Renault Kwid">Renault Kwid</option>
+          <option value="Ford EcoSport">Ford EcoSport</option>
+          <option value="Tata Tiago">Tata Tiago</option>
+        </select>
+
+        <button type="submit">Calculate Time</button>
+      </form>
+
+      <div id="result"></div>
+    </main>
+
+
+    <aside class="about">
+      <h2>About</h2>
+      <p>
+        Enter the distance in kilometers, select the vehicle type, and get the time it takes
+        to travel that distance — plus a full comparison across all vehicles.
+      </p>
+    </aside>
+  </div>
+
+  <script>
+  document.getElementById("distanceForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const distance = parseFloat(document.getElementById("distance").value);
+    const transport = document.getElementById("transport").value;
+    const resultDiv = document.getElementById("result");
+
+    resultDiv.innerHTML = "<p>⏳ Calculating...</p>";
+
+    try {
+      const response = await fetch("http://localhost:8000/calculate-time", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ distance, transport })
+      });
+
+      const data = await response.json();
+      if (data.error) {
+        resultDiv.innerHTML = `<p class="warning">${data.error}</p>`;
+        return;
+      }
+
+      const selected = data.selected;
+      let html = `
+        <h3>${selected.vehicle}</h3>
+        <p><strong>Distance:</strong> ${selected.distance} km</p>
+        <p><strong>Estimated Time:</strong> ${selected.time} hours</p>
+        <p><strong>Fuel Used:</strong> ${selected.fuelUsed} L</p>
+        <p><strong>Status:</strong> ${selected.status}</p>
+        <hr>
+        <h4>Comparison with Other Vehicles:</h4>
+        <ul style="text-align:left; line-height:1.6">
+      `;
+
+      for (const v of data.comparison) {
+        html += `<li><b>${v.name}:</b> ${v.time} hrs, ${v.fuelUsed} L — ${v.status}</li>`;
+      }
+
+      html += "</ul>";
+      resultDiv.innerHTML = html;
+    } catch (err) {
+      resultDiv.innerHTML = `<p class="warning">Error connecting to server! Make sure it's running.</p>`;
+    }
+  });
+</script>
+
+</body>
 </html>

@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- let's import our stylesheet (found in public/css/styles.css)-->
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Transport Guide</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Your Transport Guide</h1>
+  </header>
 
-  <!-- you can also specify styles straight in html! Let's use Verdana on this page.-->
-  <body style="font-family: Verdana">
-    <header
-      style="background-color: #e5e5e5; padding: 15px; text-align: center"
-    >
-      <h1>Hello World</h1>
-    </header>
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <button onclick="window.location.href='a.html'">Distance Based</button>
+      <button onclick="window.location.href='b.html'">Time Based</button>
+    </nav>
 
-    <div class="site-view">
-      <nav>
-        <a href="/a">Normal Rabbit</a>
-        <a href="/b">Gray Rabbit</a>
-        <a href="/c">Sepia Rabbit</a>
-      </nav>
+    <!-- Main Content -->
+    <main class="content">
+      <h2>About the Electric Transport Guide</h2>
+      <p>
+        The Electric Transport Guide is your go-to application for personal transportation conversion.
+        Whether you are interested in walking, using electric skateboards, scooters, or other electric modes
+        of transport, this app helps you calculate travel times based on distance and also vice-versa!
+      </p>
+      <p>
+        Choose any of the options from the navigation menu on the left to explore distance-based or
+        time-based calculations for various electric transportation modes.
+      </p>
+    </main>
 
-      <main>
-        <h2>Why are these colors so ugly?</h2>
-        <p>
-          Sure makes you feel motivated to pick a better color-scheme for
-          yourself instead of sticking with these ugly default colors, huh? >:)
-        </p>
-      </main>
-
-      <footer>
-        <h2>About</h2>
-        <p>
-          This is some example code prepared for CS160: User Interface Design
-          &amp; Development, Spring 2024. It was built by Nate Weinman, Shm
-          Almeda, and Timothy J. Aveni.
-        </p>
-      </footer>
-    </div>
-  </body>
+    <!-- Footnotes Section -->
+    <aside class="footnotes">
+      <h2>Footnotes</h2>
+      <ul>
+        <li>This application was designed for the CS260 Programming Assignment-1.</li>
+        <li><strong>Author and Owner:</strong> Apratim Banerjee</li>
+      </ul>
+    </aside>
+  </div>
+</body>
 </html>

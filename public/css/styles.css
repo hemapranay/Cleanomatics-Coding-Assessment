@@ -1,6 +1,5 @@
 * {
   /* This directive changes every element's padding behavior. */
-  /* Widths will be *inclusive* of padding and borders, which makes them more predictable. */
   box-sizing: border-box;
 }
 
@@ -74,5 +73,314 @@ footer {
     /* The main sections are still in a Flexbox layout; this just changes the Flexbox configuration */
     /* so that adjacent elements will render vertically instead of horizontally. */
     flex-direction: column;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+header {
+  background-color: #0025aa;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 1.5rem;
+}
+
+.container {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #222;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  padding: 20px;
+  gap: 15px;
+}
+
+.sidebar button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar button:hover {
+  background-color: #0056ff;
+  transition: 0.3s;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  padding: 25px;
+  background-color: white;
+}
+
+.content h2 {
+  color: #0025aa;
+  margin-bottom: 10px;
+}
+
+/* Footnotes */
+.footnotes {
+  background-color: #cde2ff;
+  color: #002080;
+  width: 250px;
+  padding: 25px;
+}
+
+.footnotes h2 {
+  color: #002080;
+  margin-bottom: 10px;
+}
+
+.footnotes ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.footnotes li {
+  margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .footnotes {
+    width: 100%;
+  }
+}  
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+header {
+  background-color: #0025aa;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 1.5rem;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  padding: 20px;
+  gap: 10px;
+}
+
+.sidebar button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar button:hover {
+  background-color: #0056ff;
+  transition: 0.3s;
+}
+
+/* Main Form Section */
+.content {
+  flex: 1;
+  padding: 30px;
+  background-color: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #0025aa;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+button[type="submit"]:hover {
+  background-color: #003df0;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #0025aa;
+}
+
+/* About Section */
+.about {
+  background-color: #cde2ff;
+  color: #002080;
+  width: 250px;
+  padding: 25px;
+}
+
+.about h2 {
+  margin-bottom: 10px;
+}
+
+.about p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .about {
+    width: 100%;
+  }
+}
+/* 
+================ */
+.container {
+  display: flex;
+  flex-wrap: nowrap; /* keep in one row */
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex: 2; /* smaller width */
+  padding: 20px;
+  gap: 10px;
+  min-width: 80px;
+  max-width: 200px;
+}
+
+.sidebar button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar button:hover {
+  background-color: #0056ff;
+  transition: 0.3s;
+}
+
+/* Main Content */
+.content {
+  flex: 2; /* takes more space */
+  padding: 30px;
+  background-color: white;
+}
+
+.content h2 {
+  color: #0025aa;
+  margin-bottom: 10px;
+}
+
+/* Footnotes or About section */
+.footnotes, .about {
+  background-color: #cde2ff;
+  color: #002080;
+  flex: 1; /* smaller width */
+  padding: 25px;
+  min-width: 180px;
+  max-width: 250px;
+}
+
+.footnotes h2, .about h2 {
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    max-width: none;
+  }
+
+  .footnotes, .about {
+    width: 100%;
   }
 }
